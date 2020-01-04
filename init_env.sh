@@ -69,8 +69,8 @@ init_ubuntu()
         mkdir -p $tmpdir  && cd $tmpdir
 
         wget http://security.ubuntu.com/ubuntu/pool/main/l/linux/ -O ubuntu.index
-        deb1=$(grep linux-headers-$all ubuntu.html |grep all|awk '{print $6}'|awk -F"\"" '{print $2}')
-        deb2=$(grep linux-headers-$kernel ubuntu.html |grep amd64|awk '{print $6}'|awk -F"\"" '{print $2}')
+        deb1=$(grep linux-headers-$all ubuntu.index |grep all|awk '{print $6}'|awk -F"\"" '{print $2}')
+        deb2=$(grep linux-headers-$kernel ubuntu.index |grep amd64|awk '{print $6}'|awk -F"\"" '{print $2}')
 	if [ -n "$deb1" -a -n "$deb2" ]; then
         	wget http://security.ubuntu.com/ubuntu/pool/main/l/linux/$deb1
         	wget http://security.ubuntu.com/ubuntu/pool/main/l/linux/$deb2
@@ -84,4 +84,14 @@ init_ubuntu()
         rm -rf $tmpdir
 	return 1
 }
+
+update_tool()
+{
+	git clone https://github.com/yyx/skbtracer.git
+	cp skbtracer/src/* /root/
+	cd root
+}
+
+
 init_ubuntu || init_centos_new 
+update_tool
