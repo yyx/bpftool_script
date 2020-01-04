@@ -89,6 +89,7 @@ update_tool()
 {
 	git clone https://github.com/yyx/skbtracer.git
 	cp skbtracer/src/* /root/
+	chmod +x /root/*.py
 }
 
 
