@@ -94,4 +94,4 @@ update_tool()
 
 
 init_ubuntu || init_centos_new 
-update_tool
+#update_tool
